@@ -8,7 +8,7 @@ defmodule Rumbl.User do
     field :password_hash, :string
     has_many :videos, Rumbl.Video
 
-    timestamps
+    timestamps()
   end
 
   def changeset(model, params \\ :invalid) do
@@ -26,11 +26,6 @@ defmodule Rumbl.User do
     |> validate_required([:password])
     |> validate_length(:password, min: 6, max: 100)
     |> put_pass_hash
-  end
-
-  defp check(changeset) do
-    IO.inspect changeset
-    changeset
   end
 
   defp put_pass_hash(changeset) do
